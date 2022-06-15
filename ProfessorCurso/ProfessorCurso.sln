@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfessorCurso", "ProfessorCurso.csproj", "{6DC8CB4A-8A97-42A1-861D-8AC77A8F4C12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estrutura.API", "..\Estrutura.API\Estrutura.API.csproj", "{5E11DBE7-94B8-4A3E-B330-BE7404EEF790}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DC8CB4A-8A97-42A1-861D-8AC77A8F4C12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DC8CB4A-8A97-42A1-861D-8AC77A8F4C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DC8CB4A-8A97-42A1-861D-8AC77A8F4C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DC8CB4A-8A97-42A1-861D-8AC77A8F4C12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E11DBE7-94B8-4A3E-B330-BE7404EEF790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E11DBE7-94B8-4A3E-B330-BE7404EEF790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E11DBE7-94B8-4A3E-B330-BE7404EEF790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E11DBE7-94B8-4A3E-B330-BE7404EEF790}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56BA4725-286E-4802-8D7D-AB25D17B347E}
+	EndGlobalSection
+EndGlobal
