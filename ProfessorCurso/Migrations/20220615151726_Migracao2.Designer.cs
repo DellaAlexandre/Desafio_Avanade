@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProfessorCurso.Respository;
 
 namespace ProfessorCurso.Migrations
 {
     [DbContext(typeof(applicationDbContext))]
-    partial class applicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220615151726_Migracao2")]
+    partial class Migracao2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

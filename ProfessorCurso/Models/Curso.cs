@@ -16,6 +16,9 @@ namespace ProfessorCurso.Models
         public Curso(CursoViewModel cursoRecebido)
         {
             Id = new Guid();
+            NomeMateria = cursoRecebido.NomeMateria;
+            DescricaoMateria = cursoRecebido.DescricaoMateria;
+            IdProfessor = cursoRecebido.IdProfessor;
 
         }
 
@@ -25,6 +28,6 @@ namespace ProfessorCurso.Models
         public string NomeMateria { get; set; }
         public string DescricaoMateria { get; set; }
         [Required]
-        public Professor IdProfessor { get; set; }
+        public string IdProfessor { get; set; }
     }
 }

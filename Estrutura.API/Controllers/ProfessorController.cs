@@ -18,23 +18,17 @@ namespace Estrutura.API.Controllers
         public IActionResult CadastrarProfessor([FromBody] ProfessorViewModel professorRecebido)
         {
             if(professorRecebido.Nome == null)
-            {
                 return BadRequest("Não foi recebido nenhum Nome de Professor.");
-            }
-
+            
             Professor professorCriado = _professorServices.CadastrarProfessor(professorRecebido);
-
-
-                return Created("Professor", professorCriado);
+            return Created("Professor", professorCriado);
         }
 
         [HttpGet]
         public IActionResult ObterProfessores()
         {
             List<Professor> lista = _professorServices.ListarProfessores();
-
             return Ok(lista);
-
         }
 
         [HttpDelete ("{id}")]
@@ -44,7 +38,6 @@ namespace Estrutura.API.Controllers
                 return NotFound("Não encontrado o id: " + id);
             
             _professorServices.DeletarProfessor(id);
-
             return NoContent();
         }
 

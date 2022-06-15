@@ -18,6 +18,11 @@ namespace ProfessorCurso.Services
           return _context.Professores.Any(p => p.Id == id);
         }
 
+        public Professor BuscaProfessor(Guid id)
+        {
+            return _context.Professores.Where(professor => professor.Id == id).FirstOrDefault();
+        }
+
         public Professor CadastrarProfessor(ProfessorViewModel professorRecebido)
         {
             Professor professor = new Professor(professorRecebido);
@@ -33,14 +38,14 @@ namespace ProfessorCurso.Services
 
         public void DeletarProfessor( Guid id)
         {
-            Professor professor = _context.Professores.Where(professor => professor.Id == id).FirstOrDefault();
+            Professor professor = BuscaProfessor(id);
             _context.Remove(professor);
             _context.SaveChanges();
         }
 
         public void AtualizaProfessor(ProfessorViewModel professorRecebido, Guid id)
         {
-            Professor professor = _context.Professores.Where(professor => professor.Id == id).FirstOrDefault();
+            Professor professor = BuscaProfessor(id);
 
             professor.Nome = professorRecebido.Nome;
             professor.Email = professorRecebido.Email;
