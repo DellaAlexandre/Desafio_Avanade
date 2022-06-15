@@ -18,6 +18,19 @@ namespace ProfessorCurso.Services
           return _context.Professores.Any(p => p.Id == id);
         }
 
+        public Professor ObterProfessor(String idRecebido)
+        {
+            List<Professor> lista = ListarProfessores();
+            if (lista.Any(c => c.Id.ToString() == idRecebido))
+            {
+                Professor professor = lista.Where(c => c.Id.ToString() == idRecebido).First();
+                return professor;
+            }
+
+            return null;
+
+        }
+
         public Professor BuscaProfessor(Guid id)
         {
             return _context.Professores.Where(professor => professor.Id == id).FirstOrDefault();
@@ -47,10 +60,26 @@ namespace ProfessorCurso.Services
         {
             Professor professor = BuscaProfessor(id);
 
-            professor.Nome = professorRecebido.Nome;
-            professor.Email = professorRecebido.Email;
-            professor.Idade = professorRecebido.Idade;
-            professor.Status = professorRecebido.Status;
+            if( professorRecebido.Nome != null)
+            {
+                professor.Nome = professorRecebido.Nome;
+            }
+            
+            if(professorRecebido.Email != null) 
+            { 
+                professor.Email = professorRecebido.Email; 
+            }
+
+            if(professorRecebido.Idade != 0)
+            {
+                professor.Idade = professorRecebido.Idade;
+            }
+           
+            if(professorRecebido.Status != null)
+            {
+                professor.Status = professorRecebido.Status;
+            }
+            
             _context.SaveChanges();
         }
 

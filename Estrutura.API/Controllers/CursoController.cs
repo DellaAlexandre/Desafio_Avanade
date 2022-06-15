@@ -19,6 +19,9 @@ namespace Estrutura.API.Controllers
         {
             if (cursoRecebido.NomeMateria == null)
                 return BadRequest("Não foi recebido nenhum Nome do Curso.");
+
+            if (_cursoServices.VerificaProfessor(cursoRecebido.IdProfessor))
+                return BadRequest("Esse Professor já está dando aula em outro curso, por gentileza informar outro professor !");
             
             Curso cursoCriado = _cursoServices.CadastrarCurso(cursoRecebido);
             return Created("Curso", cursoCriado);
@@ -31,6 +34,17 @@ namespace Estrutura.API.Controllers
             return Ok(listar);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult ObterCurso( string id)
+        {
+            Curso curso = _cursoServices.ObterCurso(id);
+            if(curso == null){
+                return NotFound("Não existe esse Curso Cadastrado");
+            }
+
+            return Ok(curso);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult deletarCurso(Guid id)
         {
@@ -41,7 +55,7 @@ namespace Estrutura.API.Controllers
             return NoContent();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult AtualizarCurso([FromBody] CursoViewModel cursoRecebido, Guid id)
         {
             if(!_cursoServices.ExisteCurso(id) || cursoRecebido == null)

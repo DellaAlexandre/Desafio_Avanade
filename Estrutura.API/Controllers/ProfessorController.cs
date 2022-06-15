@@ -31,6 +31,18 @@ namespace Estrutura.API.Controllers
             return Ok(lista);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult ObterProfessor(string id)
+        {
+            Professor professor = _professorServices.ObterProfessor(id);
+            if (professor == null)
+            {
+                return NotFound("Não existe esse Professor Cadastrado");
+            }
+
+            return Ok(professor);
+        }
+
         [HttpDelete ("{id}")]
         public IActionResult DeletarProfessor(Guid id)
         {

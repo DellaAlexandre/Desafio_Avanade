@@ -10,12 +10,25 @@ namespace ProfessorCurso.Services
 {
     public class CursoServices
     {
-        private applicationDbContext _context = new applicationDbContext();
+        private applicationDbContext _context = new applicationDbContext();        
+
         public bool ExisteCurso(Guid id)
         {
-            return _context.Cursos.Any(p => p.Id == id);
+            return _context.Cursos.Any(c => c.Id == id);
         }
 
+        public Curso ObterCurso( String idRecebido)
+        {
+            List<Curso> lista = ListarCursos();
+            if (lista.Any(c => c.Id.ToString() == idRecebido))
+            {
+                Curso curso = lista.Where(c => c.Id.ToString() == idRecebido).First();
+                return curso;
+            }
+
+            return null;
+
+        } 
         public Curso CadastrarCurso(CursoViewModel cursoRecebido)
         {
             Curso curso = new Curso(cursoRecebido);
@@ -34,6 +47,11 @@ namespace ProfessorCurso.Services
             return _context.Cursos.OrderBy(curso => curso.NomeMateria).ToList();
         }
 
+        public bool VerificaProfessor(string idProfessor)
+        {
+            return _context.Cursos.Any(c => c.IdProfessor == idProfessor);
+        }
+
         public void DeletarCurso(Guid id)
         {
             Curso curso = BuscaCurso(id);
@@ -44,10 +62,22 @@ namespace ProfessorCurso.Services
         public void AtualizarCurso(CursoViewModel cursoRecebido, Guid id)
         {
             Curso curso = BuscaCurso(id);
-            curso.NomeMateria = cursoRecebido.NomeMateria;
-            curso.DescricaoMateria = cursoRecebido.DescricaoMateria;
-            curso.IdProfessor = cursoRecebido.IdProfessor;
+            if (cursoRecebido.NomeMateria != null)
+            {
+                curso.NomeMateria = cursoRecebido.NomeMateria;
+            }
+            if (cursoRecebido.DescricaoMateria != null)
+            {
+                curso.DescricaoMateria = cursoRecebido.DescricaoMateria;
+            }
+            
+            if (cursoRecebido.IdProfessor != null && VerificaProfessor(cursoRecebido.IdProfessor))
+            {
+                curso.IdProfessor = cursoRecebido.IdProfessor;
+            }
+            
             _context.SaveChanges();
+            
         }
 
     }
